@@ -145,6 +145,9 @@ class ConfiguredParser(
         self._update_node_schema = RelationUpdate(
             manifest=macro_manifest, config=root_project, component='schema'
         )
+        self._update_node_name = RelationUpdate(
+            manifest=macro_manifest, config=root_project, component='name'
+        )
         self._update_node_alias = RelationUpdate(
             manifest=macro_manifest, config=root_project, component='alias'
         )
@@ -294,7 +297,9 @@ class ConfiguredParser(
     ) -> None:
         self._update_node_database(parsed_node, config_dict)
         self._update_node_schema(parsed_node, config_dict)
+        self._update_node_name(parsed_node, config_dict)
         self._update_node_alias(parsed_node, config_dict)
+        parsed_node.unique_id = self.generate_unique_id(parsed_node.name)
 
     def update_parsed_node(
         self, parsed_node: IntermediateNode, config: ContextConfigType

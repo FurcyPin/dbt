@@ -152,7 +152,7 @@ def generate_name_macros(package):
     from dbt.contracts.graph.parsed import ParsedMacro
     from dbt.node_types import NodeType
     name_sql = {}
-    for component in ('database', 'schema', 'alias'):
+    for component in ('database', 'schema', 'alias', 'name'):
         if component == 'alias':
             source = 'node.name'
         else:
